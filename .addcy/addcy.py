@@ -28,14 +28,14 @@ def extract_words_from_source(file_path):
             tree = ET.parse(absolute_path)
             full_text = ' '.join(elem.text for elem in tree.findall('.//*') if elem.text)
         except ET.ParseError:
-            print(f"Fallo al parsear XML.")
+            print(f"-> Fallo al parsear XML.")
             return []
     else:
         try:
             with open(absolute_path, 'r', encoding='utf-8') as f:
                 full_text = f.read()
         except FileNotFoundError:
-            print(f"Archivo '{absolute_path}' no encontrado.")
+            print(f"-> Archivo '{absolute_path}' no encontrado.")
             return []
 
     cleaned_text = re.sub(r'[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\s]', ' ', full_text)
@@ -72,7 +72,7 @@ def load_existing_dictionary(dict_path):
 
         return []
     except Exception as e:
-        print(f"Fallo al cargar el diccionario madre: {e}")
+        print(f"-> Fallo al cargar el diccionario madre: {e}")
         return []
 
 
@@ -95,7 +95,7 @@ def run_addcy():
     words_added = len(final_list) - len(existing_words)
     
     new_content = [
-        f"# Diccionario Canónico Expandido con {os.path.basename(source_file_path)}\n",
+        f"# Diccionario canónico expandido con {os.path.basename(source_file_path)}\n",
         f"# Palabras totales: {len(final_list)}. Palabras añadidas (aproximado): {words_added}.\n\n",
         "DATA = [\n"
     ]
@@ -110,12 +110,12 @@ def run_addcy():
         with open(CANONICAL_DICT_PATH, 'w', encoding='utf-8') as f:
             f.writelines(new_content)
         
-        print("Operación Finalizada.")
-        print(f"Palabras totales en el diccionario: {len(final_list)}")
-        print(f"El archivo data.py ha sido actualizado.")
+        print("-> Operación Finalizada.")
+        print(f"-> Palabras totales en el diccionario: {len(final_list)}")
+        print(f"-> El archivo data.py ha sido actualizado.")
         
     except IOError:
-        print("\nNo se pudo escribir en el archivo data.py.")
+        print("\n-> No se pudo escribir en el archivo data.py.")
 
 if __name__ == "__main__":
     run_addcy()
