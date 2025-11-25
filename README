@@ -1,80 +1,80 @@
-                                  __    ____  ____    ___  _  _ 
-                                 /__\  (  _ \(  _ \  / __)( \/ )
-                                /(__)\  )(_) ))(_) )( (__  \  / 
-                               (__)(__)(____/(____/  \___) (__) 
-                              
-                                 - B U I L D  L E X I C O N -
-      
-      +================================================================================+
-      |                                  R E A D M E                                   |
-      +================================================================================+
-      |                                                                                |
-      | 'addcy' es una herramienta de línea de comandos (CLI) diseñada para la         |
-      | expansión y el mantenimiento de **diccionarios canónicos** de palabras. Su     |
-      | función principal es ingestar grandes volúmenes de texto (libros, documentos,  |
-      | bases de datos) y consolidar las palabras en una única base de datos estable.  |
-      |                                                                                |
-      | El comando 'addcy' automatiza el proceso de estabilización léxica.             |
-      |                                                                                |
-      | El diccionario madre se almacena y mantiene de forma canónica en:              |
-      | -> **Base de Datos:** ~/.addcy/data.py (Variable Python: DATA)                 |
-      |                                                                                |
-      | El usuario utiliza la carpeta:                                                 |
-      | -> **Archivos Fuente:** ~/addcy/ (Ubicación sugerida para textos de origen)    |
-      |                                                                                |
-      | Al ejecutar 'addcy <ruta_archivo>', el script realiza el siguiente proceso:    |
-      |                                                                                |
-      | * [>] **Lectura:** Lee el contenido del archivo fuente (acepta TXT, XML).      |
-      | * [>] **Normalización:** Convierte todas las palabras a minúsculas y elimina   |
-      |       estrictamente todos los acentos y diacríticos.                           |
-      | * [>] **Consolidación:** Combina las palabras nuevas y las existentes del      |
-      |       archivo data.py.                                                         |
-      | * [>] **Limpieza:** Utiliza un conjunto (set) para garantizar que **no exista  |
-      |       ni una sola palabra duplicada**.                                         |
-      | * [>] **Estabilización:** Ordena alfabéticamente el diccionario final para     |
-      |       asegurar que el índice de cada palabra sea **siempre el mismo** en cada  |
-      |       ejecución (índice canónico).                                             |
-      | * [>] **Guardado:** Sobrescribe el archivo ~/.addcy/data.py con la lista       |
-      |       limpia y ordenada.                                                       |
-      |                                                                                |
-      |                                                                                |
-      | INSTALACIÓN Y CONFIGURACIÓN                                                    |
-      |                                                                                |
-      | 'addcy' no requiere dependencias externas más allá de Python 3.                |
-      |                                                                                |
-      | PASO 1: Preparar la estructura de archivos                                     |
-      |                                                                                |
-      | Debes crear las carpetas de configuración y el archivo de base de datos vacío: |
-      |                                                                                |
-      |                                                                                |
-      | mkdir -p ~/.addcy                                                              |
-      | mkdir -p ~/addcy                                                               |
-      | echo "DATA = []" > ~/.addcy/data.py                                            |
-      |                                                                                |
-      |                                                                                |
-      | PASO 2: Colocar el Script                                                      |
-      |                                                                                |
-      | Guarda el código del script 'addcy.py' (el núcleo lógico) dentro de la         |
-      | carpeta oculta:                                                                |
-      |                                                                                |
-      | mv addcy.py ~/.addcy/                                                          |
-      | chmod +x ~/.addcy/addcy.py                                                     |
-      |                                                                                |
-      | PASO 3: Definir el Comando (Función Bash)                                      |
-      |                                                                                |
-      | Agregua la siguiente función al final de su archivo de configuración de shell  |
-      | (ej: ~/.bashrc o ~/.zshrc) para que 'addcy' se reconozca globalmente:          |
-      |                                                                                |
-      | addcy () {                                                                     |
-      |     PYTHON_SCRIPT="$HOME/.addcy/addcy.py"                                      |
-      |     python3 "$PYTHON_SCRIPT" "$1"                                              |
-      | }                                                                              |
-      |                                                                                |
-      | Recuerda ejecutar `source ~/.bashrc` para aplicar los cambios.                 |
-      |                                                                                |
-      |                                                                                |
-      |         USO                                                                    |
-      |                                                                                |
-      | addcy <ruta_al_archivo_de_texto>                                               |
-      |                                                                                |
-      +================================================================================+
+                                        __    ____  ____    ___  _  _ 
+                                       /__\  (  _ \(  _ \  / __)( \/ )
+                                      /(__)\  )(_) ))(_) )( (__  \  / 
+                                     (__)(__)(____/(____/  \___) (__) 
+                                    
+                                       - B U I L D  L E X I C O N -
+            
+            +================================================================================+
+            |                                  R E A D M E                                   |
+            +================================================================================+
+            |                                                                                |
+            | 'addcy' es una herramienta de línea de comandos (CLI) diseñada para la         |
+            | expansión y el mantenimiento de **diccionarios canónicos** de palabras. Su     |
+            | función principal es ingestar grandes volúmenes de texto (libros, documentos,  |
+            | bases de datos) y consolidar las palabras en una única base de datos estable.  |
+            |                                                                                |
+            | El comando 'addcy' automatiza el proceso de estabilización léxica.             |
+            |                                                                                |
+            | El diccionario madre se almacena y mantiene de forma canónica en:              |
+            | -> **Base de Datos:** ~/.addcy/data.py (Variable Python: DATA)                 |
+            |                                                                                |
+            | El usuario utiliza la carpeta:                                                 |
+            | -> **Archivos Fuente:** ~/addcy/ (Ubicación sugerida para textos de origen)    |
+            |                                                                                |
+            | Al ejecutar 'addcy <ruta_archivo>', el script realiza el siguiente proceso:    |
+            |                                                                                |
+            | * [>] **Lectura:** Lee el contenido del archivo fuente (acepta TXT, XML).      |
+            | * [>] **Normalización:** Convierte todas las palabras a minúsculas y elimina   |
+            |       estrictamente todos los acentos y diacríticos.                           |
+            | * [>] **Consolidación:** Combina las palabras nuevas y las existentes del      |
+            |       archivo data.py.                                                         |
+            | * [>] **Limpieza:** Utiliza un conjunto (set) para garantizar que **no exista  |
+            |       ni una sola palabra duplicada**.                                         |
+            | * [>] **Estabilización:** Ordena alfabéticamente el diccionario final para     |
+            |       asegurar que el índice de cada palabra sea **siempre el mismo** en cada  |
+            |       ejecución (índice canónico).                                             |
+            | * [>] **Guardado:** Sobrescribe el archivo ~/.addcy/data.py con la lista       |
+            |       limpia y ordenada.                                                       |
+            |                                                                                |
+            |                                                                                |
+            | INSTALACIÓN Y CONFIGURACIÓN                                                    |
+            |                                                                                |
+            | 'addcy' no requiere dependencias externas más allá de Python 3.                |
+            |                                                                                |
+            | PASO 1: Preparar la estructura de archivos                                     |
+            |                                                                                |
+            | Debes crear las carpetas de configuración y el archivo de base de datos vacío: |
+            |                                                                                |
+            |                                                                                |
+            | mkdir -p ~/.addcy                                                              |
+            | mkdir -p ~/addcy                                                               |
+            | echo "DATA = []" > ~/.addcy/data.py                                            |
+            |                                                                                |
+            |                                                                                |
+            | PASO 2: Colocar el Script                                                      |
+            |                                                                                |
+            | Guarda el código del script 'addcy.py' (el núcleo lógico) dentro de la         |
+            | carpeta oculta:                                                                |
+            |                                                                                |
+            | mv addcy.py ~/.addcy/                                                          |
+            | chmod +x ~/.addcy/addcy.py                                                     |
+            |                                                                                |
+            | PASO 3: Definir el Comando (Función Bash)                                      |
+            |                                                                                |
+            | Agregua la siguiente función al final de su archivo de configuración de shell  |
+            | (ej: ~/.bashrc o ~/.zshrc) para que 'addcy' se reconozca globalmente:          |
+            |                                                                                |
+            | addcy () {                                                                     |
+            |     PYTHON_SCRIPT="$HOME/.addcy/addcy.py"                                      |
+            |     python3 "$PYTHON_SCRIPT" "$1"                                              |
+            | }                                                                              |
+            |                                                                                |
+            | Recuerda ejecutar `source ~/.bashrc` para aplicar los cambios.                 |
+            |                                                                                |
+            |                                                                                |
+            |         USO                                                                    |
+            |                                                                                |
+            | addcy <ruta_al_archivo_de_texto>                                               |
+            |                                                                                |
+            +================================================================================+
